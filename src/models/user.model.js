@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 //refresh and access token is generated using shard256
 const userSchema = new Schema(
@@ -39,7 +39,7 @@ const userSchema = new Schema(
         ref: "Video",
       },
     ],
-    passowrd: {
+    password: {
       type: String,
       required: [true, "Password is required"],
     },
@@ -54,7 +54,7 @@ userSchema.pre("save", async function (next) {
   // if the password is not modified, skip hashing
   if (!this.isModified("password")) return next();
   // Hash the password before saving it to the database
-  this.password = bcrypt.hash(this.password, 10);
+  this.password =await bcrypt.hash(this.password, 10);
   next();
 });
 
