@@ -22,7 +22,8 @@ description:{
 },
 duration:{
     type:Number,
-    required:true
+    required:true,
+     min: [1, "Duration must be at least 1 second"],
 },
 views:{
     type:Number,
