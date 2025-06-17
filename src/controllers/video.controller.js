@@ -96,9 +96,13 @@ const getVideoById = asyncHandler(async (req, res) => {
       { owner: userId },            // Owner can access any of their videos
       { isPublished: true }         // Others can access only published ones
     ]
-  }).lean()
+  })
 
   if(!video) throw new ApiError(404,"invalid video Id")
+
+    video.views+=1;
+    await video.save({validateBeforeSave:false})
+
   
   return res.status(200).json(new ApiResponse(200,video,'fetched video successfully'))  
 

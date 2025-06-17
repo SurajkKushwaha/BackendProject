@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { globalRateLimiter } from './middlewares/rateLimiter.js';
 
 
 const app = express(); 
+app.use(globalRateLimiter);
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
     credentials:true
