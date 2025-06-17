@@ -1,4 +1,5 @@
-# chai aur code backend series
+# Youtube + Twitter (Backend)
 
-# project made with the help of hitesh sir
+# chai aur code backend series project with all assignments done
+
 
